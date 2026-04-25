@@ -1,0 +1,31 @@
+<section class="content-historico">
+  <header>
+    <div>
+      <h1>Histórico de transações</h1>
+      <p>Últimas movimentações</p>
+    </div>
+
+    <div class="content-historico--filter">
+      <fa-icon [icon]="faFilter" />
+    </div>
+  </header>
+
+  @for (gasto of listaGastos; track gasto._id) {
+    <article class="content-historico-item">
+      <div class="content-historico-item--icon">
+        <fa-icon
+          [icon]="getIconByCategoria(gasto.categoria)"
+          class="content-historico-item--icon-svg"
+        />
+      </div>
+      <div class="content-historico-item--info">
+        <strong>{{ gasto.descricao }}</strong>
+        <div>
+          <p>{{ gasto.categoria }}</p>
+          <p>{{ gasto.data | date:'dd/MM/yyyy' }}</p>
+        </div>
+      </div>
+      <p class="content-historico-item--valor">- R${{ gasto.valor | number:'1.2-2' }}</p>
+    </article>
+  }
+</section>
